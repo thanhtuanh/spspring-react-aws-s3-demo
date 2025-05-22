@@ -1,0 +1,56 @@
+### Alle Produkte abrufen
+GET http://localhost:8080/api/products
+Accept: application/json
+
+###
+
+### Produkt mit ID abrufen
+GET http://localhost:8080/api/products/1
+Accept: application/json
+
+###
+
+### Neues Produkt mit Bild hochladen (multipart/form-data)
+POST http://localhost:8080/api/products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="title"
+
+Testprodukt
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="test.jpg"
+Content-Type: image/jpeg
+
+< ./access/images/4.jpg
+--WebAppBoundary--
+
+###
+
+### Produkt mit ID löschen
+DELETE http://localhost:8080/api/products/1
+Accept: application/json
+
+###
+
+### Health Check
+GET http://localhost:8080/actuator/health
+Accept: application/json
+
+###
+
+### Anwendungs-Info (falls konfiguriert)
+GET http://localhost:8080/actuator/info
+Accept: application/json
+
+###
+
+### Systemmetriken (z. B. HTTP-Antwortzeiten)
+GET http://localhost:8080/actuator/metrics
+Accept: application/json
+
+###
+
+### Detaillierte Metrik: HTTP Requests
+GET http://localhost:8080/actuator/metrics/http.server.requests
+Accept: application/json
