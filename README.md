@@ -55,6 +55,34 @@ Ziel dieses Projekts ist die praxisnahe Demonstration moderner Technologien und 
 | Sicherheit | Keine Speicherung von Dateien im Backend                        |
 | CI/CD      | Automatisierter Build via GitHub Actions für Frontend + Backend |
 | Container  | Komplette Umgebung per `docker-compose`                         |
+| Monitoring | Health Check & Metriken via Spring Boot Actuator                |
+
+---
+
+## 📈 Monitoring mit Spring Boot Actuator
+
+Das Projekt integriert `spring-boot-starter-actuator` für Health Monitoring und Metriken.
+
+### Wichtige Endpunkte (standardmäßig aktiv):
+
+* `GET /actuator/health` → Basis-Statusprüfung (z. B. DB verfügbar?)
+* `GET /actuator/info` → Projektinfos
+* `GET /actuator/metrics` → Prometheus-kompatible Systemmetriken
+
+### Konfiguration (in `application.properties`):
+
+```properties
+management.endpoints.web.exposure.include=health,info,metrics
+management.endpoint.health.show-details=always
+```
+
+### Beispiel-Aufruf:
+
+```bash
+curl http://localhost:8080/actuator/health
+```
+
+Diese Informationen können bei Deployments auf **Render.com**, **AWS ECS**, **Kubernetes** oder **Docker Healthcheck** genutzt werden.
 
 ---
 

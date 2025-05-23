@@ -61,87 +61,99 @@ export default function ProductForm({ onUploadSuccess }) {
     formData.append('file', file);
 
     try {
-      const res = await axios.post('/products', formData, {
-        onUploadProgress: (event) => {
-          const percent = Math.round((event.loaded * 100) / event.total);
-          setUploadProgress(percent);
-        }
-      });
+      const res = await axios.post('/products', formData); // KEIN Content-Type setzen!
       setMessage(`✅ Erfolgreich hochgeladen: ${res.data.title}`);
       setTitle('');
       setFile(null);
-      setMetadata(null);
       setPreviewUrl('');
+      setMetadata(null);
       setUploadProgress(0);
-      setError('');
-      if (onUploadSuccess) onUploadSuccess();
+      if (onUploadSuccess) onUploadSuccess(); // <-- WICHTIG: Nach Erfolgreichem Upload
     } catch (err) {
+      console.error('❌ Upload fehlgeschlagen:', err);
       setMessage('❌ Upload fehlgeschlagen.');
-      console.error(err);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="mb-4">
-      <div className="mb-3">
-        <label className="form-label">Titel</label>
-        <input
-          type="text"
-          className="form-control"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-      </div>
+      <div className="card p-4 shadow-sm">
+        <h5 className="mb-3">📤 Neues Produkt hochladen</h5>
 
-      <div
-        className="mb-3 p-3 border rounded bg-light text-center"
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        ref={dropRef}
-        style={{ cursor: 'pointer' }}
-      >
-        <label className="form-label">Datei hierher ziehen oder auswählen</label>
-        <input type="file" className="form-control" onChange={handleFileChange} />
-      </div>
-
-      {uploadProgress > 0 && (
         <div className="mb-3">
-          <label>Fortschritt:</label>
-          <div className="progress">
-            <div
-              className="progress-bar progress-bar-striped bg-success"
-              style={{ width: `${uploadProgress}%` }}
-            >
-              {uploadProgress}%
+          <label className="form-label">Titel</label>
+          <input
+            type="text"
+            className="form-control"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
+
+        <div
+          className="mb-3 p-3 border border-dashed rounded bg-light text-center"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          ref={dropRef}
+          style={{ cursor: 'pointer' }}
+        >
+          <label className="form-label">Datei hierher ziehen oder auswählen</label>
+          <input type="file" className="form-control" onChange={handleFileChange} />
+        </div>
+
+        {uploadProgress > 0 && (
+          <div className="mb-3">
+            <label>Fortschritt:</label>
+            <div className="progress">
+              <div
+                className="progress-bar progress-bar-striped bg-success"
+                style={{ width: `${uploadProgress}%` }}
+              >
+                {uploadProgress}%
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <button type="submit" className="btn btn-primary" disabled={!!error}>
-        Hochladen
-      </button>
+        <button type="submit" className="btn btn-primary w-100" disabled={!!error}>
+          Hochladen
+        </button>
 
-      {error && <div className="mt-3 alert alert-danger">{error}</div>}
-      {message && <div className="mt-3 alert alert-info">{message}</div>}
+        {error && <div className="mt-3 alert alert-danger">{error}</div>}
+        {message && <div className="mt-3 alert alert-info">{message}</div>}
 
-      {previewUrl && (
-        <div className="mt-3">
-          <p>Bildvorschau:</p>
-          <img src={previewUrl} alt="Vorschau" className="img-thumbnail" width="300" />
-        </div>
-      )}
+        {previewUrl && (
+          <div className="mt-3 text-center">
+            <p>Bildvorschau:</p>
+            <img
+              src={previewUrl}
+              alt="Vorschau"
+              className="img-thumbnail"
+              style={{
+                maxWidth: '140px',
+                maxHeight: '140px',
+                objectFit: 'cover',
+                borderRadius: '0.5rem',
+                border: '1px solid #dee2e6',
+                boxShadow: '0 2px 8px rgba(33,37,41,0.07)'
+              }}
+            />
+          </div>
+        )}
 
-      {metadata && (
-        <div className="mt-3">
-          <h6>📄 Bild-Metadaten:</h6>
-          <p><strong>Dateiname:</strong> {metadata.name}</p>
-          <p><strong>Typ:</strong> {metadata.type}</p>
-          <p><strong>Größe:</strong> {metadata.size}</p>
-          <p><strong>Abmessungen:</strong> {metadata.width}×{metadata.height}px</p>
-        </div>
-      )}
+        {metadata && (
+          <div className="mt-3">
+            <h6>📄 Bild-Metadaten:</h6>
+            <ul className="list-group">
+              <li className="list-group-item">📁 <strong>Dateiname:</strong> {metadata.name}</li>
+              <li className="list-group-item">🧾 <strong>Typ:</strong> {metadata.type}</li>
+              <li className="list-group-item">💾 <strong>Größe:</strong> {metadata.size}</li>
+              <li className="list-group-item">📐 <strong>Abmessungen:</strong> {metadata.width}×{metadata.height}px</li>
+            </ul>
+          </div>
+        )}
+      </div>
     </form>
   );
 }

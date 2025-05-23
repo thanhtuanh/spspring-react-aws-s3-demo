@@ -9,14 +9,12 @@ export default function ProductList({ reloadTrigger }) {
     try {
       const res = await axios.get("/products");
       const fetchedProducts = res.data;
-
       const urlMap = {};
 
       await Promise.all(
         fetchedProducts.map(async (product) => {
           if (product.filename) {
             try {
-              console.log("🔍 Lade Presigned URL für:", product.filename);
               const urlRes = await axios.get(`/products/presigned-url/${product.filename}`);
               urlMap[product.id] = urlRes.data;
             } catch (err) {
@@ -39,7 +37,6 @@ export default function ProductList({ reloadTrigger }) {
 
   const handleDelete = async (id) => {
     if (!id || !window.confirm("Produkt wirklich löschen?")) return;
-
     try {
       await axios.delete(`/products/${id}`);
       fetchProducts();
@@ -51,8 +48,8 @@ export default function ProductList({ reloadTrigger }) {
   return (
     <div className="row">
       {products.map((product) => (
-        <div className="col-md-6 mb-4" key={product.id}>
-          <div className="card h-100">
+        <div className="col-md-6 col-lg-4 mb-4" key={product.id}>
+          <div className="card shadow-sm h-100 rounded-3">
             {presignedUrls[product.id] ? (
               <img
                 src={presignedUrls[product.id]}
@@ -61,25 +58,25 @@ export default function ProductList({ reloadTrigger }) {
                 style={{ objectFit: 'cover', height: '200px' }}
               />
             ) : (
-              <div className="card-img-top text-center p-5 text-muted">
+              <div className="card-img-top d-flex align-items-center justify-content-center bg-light text-muted" style={{ height: '200px' }}>
                 Kein Bild
               </div>
             )}
             <div className="card-body d-flex flex-column">
               <h5 className="card-title">{product.title}</h5>
-              {product.filename && (
-                <>
-                  <p className="mb-1"><strong>Dateiname:</strong> {product.filename}</p>
-                  <p className="mb-1"><strong>Typ:</strong> {product.filetype}</p>
-                  <p className="mb-1"><strong>Größe:</strong> {(product.filesize / 1024).toFixed(2)} KB</p>
-                  <p className="mb-1"><strong>Abmessungen:</strong> {product.width}×{product.height}px</p>
-                </>
-              )}
+              <ul className="list-unstyled small mb-3">
+                {product.filename && <li><strong>Dateiname:</strong> {product.filename}</li>}
+                {product.filetype && <li><strong>Typ:</strong> {product.filetype}</li>}
+                {product.filesize && <li><strong>Größe:</strong> {(product.filesize / 1024).toFixed(2)} KB</li>}
+                {product.width && product.height && (
+                  <li><strong>Abmessungen:</strong> {product.width}×{product.height}px</li>
+                )}
+              </ul>
               <button
-                className="btn btn-danger mt-auto"
+                className="btn btn-outline-danger mt-auto w-100"
                 onClick={() => handleDelete(product.id)}
               >
-                Löschen
+                🗑️ Löschen
               </button>
             </div>
           </div>
