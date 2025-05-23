@@ -1,167 +1,160 @@
-# 📁 Spring React AWS S3 Demo
+# 🌩️ MyCloud – Fullstack Produkt-Manager (Spring Boot, React, AWS S3, Docker)
 
-Ein modernes Fullstack-Projekt mit **Spring Boot**, **React**, **AWS S3** und **Docker**, ideal als Demonstration für Cloud-Kompetenz in Bewerbungssituationen.
-
----
-
-## 🚀 Demo
-
-* 🌐 Frontend: [http://localhost:3000](http://localhost:3000)
-* 🛠️ API Backend: [http://localhost:8080/api/products](http://localhost:8080/api/products)
-* ☁️ Beispielbild in S3: [https://dnguyenawsbucket.s3.eu-west-1.amazonaws.com/beispiel.jpg](https://dnguyenawsbucket.s3.eu-west-1.amazonaws.com/beispiel.jpg)
+**Ein modernes Fullstack-Projekt zur Demonstration meiner Kompetenzen in Cloud-Entwicklung, moderner Webarchitektur und CI/CD.**  
+Ideal als Showcase als Fullstack-Entwickler (Java/React/Cloud).
 
 ---
 
-## 💼 Bewerbungs-Kontext
+## 🚀 Projektüberblick
 
-Ziel dieses Projekts ist die praxisnahe Demonstration moderner Technologien und Cloud-Erfahrung:
+Dieses Projekt vereint alle Fähigkeiten, die heute von einem erfahrenen Fullstack-Developer erwartet werden:
 
-* **Spring Boot (Java 17)** – REST-API mit Cloud-Anbindung
-* **React** – modernes UI mit Dateiupload, Metadatenanzeige & Vorschau
-* **AWS S3** – Presigned URL Upload mit sicherem Zugriff
-* **CI/CD** – über GitHub Actions automatisiert
-* **Dockerisierung** – vollständiger lokaler Aufbau via `docker-compose`
-* **Dokumentation** – klar strukturiertes README
+- **Backend:** Spring Boot (Java 17), REST API, Security (JWT), AWS S3 Integration, PostgreSQL, Dockerisierung, CI/CD
+- **Frontend:** React, modernes UI/UX, File-Upload mit Vorschau und Metadaten, Authentifizierung, Bootstrap
+- **Cloud/DevOps:** AWS S3 (Presigned URLs), Docker Compose für lokale Entwicklung, GitHub Actions für automatisierte Builds, Monitoring mit Spring Actuator
 
 ---
 
-## 🔐 Sicherheit & Best Practices
+## 💡 Warum dieses Projekt für Ihre Auswahl relevant ist
 
-* **Presigned URLs** schützen AWS-Zugangsdaten: Upload erfolgt direkt vom Browser.
-* `.env` wird **nicht** ins Repository eingecheckt (siehe `.gitignore`).
-* AWS-Zugangsdaten nur lokal/in Render UI setzen, niemals hardcoded.
-* S3 Bucket mit **CORS-Konfiguration**:
-
-```json
-[
-  {
-    "AllowedOrigins": ["*"],
-    "AllowedMethods": ["GET", "PUT"],
-    "AllowedHeaders": ["*"]
-  }
-]
-```
+- **End-to-End:** Zeigt Kompetenz in allen Schichten – vom Datenbankmodell bis zum modernen Frontend.
+- **Security-Bewusstsein:** JWT-Authentifizierung, keine Speicherung sensibler Daten im Frontend.
+- **Cloud Readiness:** Direkte Integration von AWS S3, konfigurierbar für echtes Cloud-Deployment.
+- **DevOps Mindset:** Komplett automatisierter Build & Test via GitHub Actions, Infrastructure-as-Code (Docker Compose).
+- **Clean Code & Testing:** Umfangreiche Unit- und Integrationstests (Spring, JUnit, React Testing Library).
+- **Sehr gute Dokumentation:** Verständlich für Entwickler UND Entscheider.
 
 ---
 
-## 📦 Features
+## 🧑‍💻 Tech Stack
 
-| Bereich    | Funktion                                                        |
-| ---------- | --------------------------------------------------------------- |
-| Upload     | Direkt-Upload nach AWS S3 mit Vorschau                          |
-| Metadaten  | Bildgröße, Typ, Name, Abmessungen, Größe                        |
-| API        | RESTful via Spring Boot                                         |
-| Speicher   | PostgreSQL für Metadaten                                        |
-| Sicherheit | Keine Speicherung von Dateien im Backend                        |
-| CI/CD      | Automatisierter Build via GitHub Actions für Frontend + Backend |
-| Container  | Komplette Umgebung per `docker-compose`                         |
-| Monitoring | Health Check & Metriken via Spring Boot Actuator                |
+| Bereich    | Technologie                         |
+| ---------- | ----------------------------------- |
+| Backend    | Spring Boot, Spring Security, JPA   |
+| Auth       | JWT, Custom UserDetailsService      |
+| Cloud      | AWS S3, Presigned URLs, Actuator    |
+| DB         | PostgreSQL (Docker), Flyway         |
+| Frontend   | React, Bootstrap, Axios             |
+| DevOps     | Docker, Docker Compose, GitHub Actions |
+| Tests      | JUnit, Mockito, React Testing Library |
 
 ---
 
-## 📈 Monitoring mit Spring Boot Actuator
+## 🔒 Security & Best Practices
 
-Das Projekt integriert `spring-boot-starter-actuator` für Health Monitoring und Metriken.
+- **JWT Authentication:** Sicheres Login, Backend prüft Token pro Request.
+- **Presigned URLs:** Uploads direkt zu S3, keine AWS-Keys im Frontend.
+- **Keine Secrets im Code:** Sensitive Daten nur via .env / Umgebungsvariablen.
+- **CORS-Konfiguration:** S3 und Backend erlauben nur nötige Requests.
 
-### Wichtige Endpunkte (standardmäßig aktiv):
+---
 
-* `GET /actuator/health` → Basis-Statusprüfung (z. B. DB verfügbar?)
-* `GET /actuator/info` → Projektinfos
-* `GET /actuator/metrics` → Prometheus-kompatible Systemmetriken
+## 🗂️ Architektur & Features
 
-### Konfiguration (in `application.properties`):
+### Backend (Spring Boot)
 
-```properties
-management.endpoints.web.exposure.include=health,info,metrics
-management.endpoint.health.show-details=always
-```
+- **RESTful API:** `/api/products`, `/api/auth/login`, Presigned URL Endpoints
+- **Image-Upload:** Files landen direkt in AWS S3, Metadaten (Größe, Dimensionen, Typ) werden persistiert.
+- **Monitoring:** Health, Metrics, Info via Actuator
+- **Testing:** Unit/Integration mit MockMvc, JPA, Auth
 
-### Beispiel-Aufruf:
+### Frontend (React)
+
+- **Login-Formular:** Authentifizierung gegen Spring Boot API
+- **Produktverwaltung:** Upload mit Vorschau, Metadatenanzeige, Delete-Funktion
+- **Responsives UI:** Bootstrap-basiert
+- **State Management:** React Hooks
+
+### DevOps / CI/CD
+
+- **Builds:** Separate Pipelines (Backend + Frontend) mit GitHub Actions (Build, Test, optional Docker Build)
+- **Docker Compose:** Lokale Entwicklung mit einem Befehl (`docker-compose up`)
+- **Einfache Cloud-Migration:** Deploybar auf Render, AWS, Railway o.ä.
+
+---
+
+## 📝 Was sollte im screenshot gezeigt werden?
+
+**Frontend UI:**
+- Login-Formular (korrektes/inkorrektes Login)
+- Produktübersicht (mit Bildern, Metadaten, Delete-Button)
+- Upload-Formular mit Bildvorschau und Fortschrittsbalken
+
+**Backend/Cloud:**
+- AWS S3 Bucket mit hochgeladenen Bildern (AWS Console)
+- Spring Boot Actuator Endpunkte (`/actuator/health`, `/actuator/info`)
+- GitHub Actions Pipeline (grüne Build-Badges, Build-Logs)
+
+**Code/Architektur:**
+- Kurzer Ausschnitt ProductController.java (API-Design)
+- Ausschnitt ProductForm.js (Upload-Logik mit Preview)
+- Auszug GitHub Actions Workflow YAML
+
+**DevOps:**
+- Docker Compose Übersicht (z.B. `docker ps` mit laufenden Containern)
+- Terminal-Logs von erfolgreichem Build/Test
+- `.env`-Beispieldatei (ohne echte Secrets!)
+
+---
+
+## 🏁 So starten Sie das Projekt
+
+### 1. Klonen & vorbereiten
 
 ```bash
-curl http://localhost:8080/actuator/health
+git clone <REPO-URL>
+cd mycloud
+cp .env.example .env  # Füllen Sie Ihre AWS/Datenbankdaten ein
 ```
 
-Diese Informationen können bei Deployments auf **Render.com**, **AWS ECS**, **Kubernetes** oder **Docker Healthcheck** genutzt werden.
-
----
-
-## 🔧 Lokales Setup
-
-### Voraussetzungen
-
-* Docker + Docker Compose
-* `.env` Datei mit AWS-Zugangsdaten:
-
-```env
-AWS_REGION=eu-west-1
-AWS_S3_BUCKET=dnguyenawsbucket
-AWS_ACCESS_KEY=dein_key
-AWS_SECRET_KEY=dein_secret
-```
-
-### Starten
+### 2. Starten (lokal, mit Docker)
 
 ```bash
 docker-compose --env-file .env up --build
 ```
+- Frontend: http://localhost:3000
+- Backend: http://localhost:8080
 
-Zugänglich unter:
+### 3. Deploy in Cloud (z.B. Render.com, Railway)
 
-* Frontend: [http://localhost:3000](http://localhost:3000)
-* Backend: [http://localhost:8080](http://localhost:8080)
-
----
-
-## 🧪 Beispiel: curl Upload
-
-```bash
-curl -X GET http://localhost:8080/api/products/presigned-upload-url/test.jpg
-# ➜ gibt URL zurück
-curl -X PUT "<URL>" -H "Content-Type: image/jpeg" --upload-file ./test.jpg
-```
+- Projekt als Webservice anlegen
+- Umgebungsvariablen setzen (siehe `.env`)
+- Auto-Deploy per GitHub Actions
 
 ---
 
-## 🏁 Deployment
+## 📸 Screenshot-Ideen
 
-### 🌍 Render.com
-
-1. Repository bei GitHub verbinden
-
-2. Zwei Webservices erstellen:
-
-   * **Backend:** Spring Boot App (Docker oder Java Webservice)
-   * **Frontend:** React (Static Site)
-
-3. **Umgebungsvariablen setzen**
-
-```env
-SPRING_DATASOURCE_URL=jdbc:postgresql://...:5432/mycloud
-SPRING_DATASOURCE_USERNAME=postgres
-SPRING_DATASOURCE_PASSWORD=postgres
-AWS_REGION=eu-west-1
-AWS_S3_BUCKET=dnguyenawsbucket
-AWS_ACCESS_KEY=...
-AWS_SECRET_KEY=...
-```
-
-4. CI/CD mit GitHub Actions oder Render Auto-Deploy nutzen
-
-### 🏛 Railway.app (für PostgreSQL)
-
-1. Neues PostgreSQL-Projekt erstellen
-2. Connection String kopieren
-3. In `SPRING_DATASOURCE_URL` einsetzen
-
-**Beispiel:**
-
-```
-jdbc:postgresql://pg-12345678.rw.rds.com:5432/mycloud
-```
+- [ ] Login-Seite mit Auth-Flow
+- [ ] Produktübersicht mit Bild, Metadaten, Delete
+- [ ] Upload mit Vorschau/Metadaten
+- [ ] AWS S3 Bucket nach Upload
+- [ ] Health Endpoint (`/actuator/health`)
+- [ ] GitHub Actions „passed“ Build
+- [ ] Docker Compose: laufende Container
 
 ---
 
-## 📄 Lizenz
+## 📄 Weiterführende Links
 
-MIT License © 2025 Duc Thanh Nguyen
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [React](https://react.dev/)
+- [AWS S3](https://aws.amazon.com/s3/)
+- [Docker](https://www.docker.com/)
+- [GitHub Actions](https://github.com/features/actions)
+
+---
+
+## 🌍 Geplantes Auto-Deployment (Render.com/Fly.io)
+
+**Auto-Deployment in die Cloud ist als nächster Schritt geplant:**  
+Bei jedem Commit auf den Haupt-Branch wird das Projekt zukünftig automatisch auf Plattformen wie Render.com oder Fly.io gebaut und online bereitgestellt.
+
+**Vorteile:**  
+- Stets aktuelle Live-Demo für Recruiter und Fachteams
+- Zeigt DevOps-Kenntnisse (CI/CD, Cloud Native)
+- Einfach erweiterbar für weitere Cloud-Anbieter
+
+*Sobald aktiviert, werden Live-URL und Screenshots ergänzt.*
+
+**MIT License © 2025 Duc Thanh Nguyen**

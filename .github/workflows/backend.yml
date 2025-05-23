@@ -27,4 +27,11 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
+      - name: Run Tests
+        run: mvn test
 
+      # Optional: Coverage Report
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v3
+      #   with:
+      #     files: backend/target/site/jacoco/jacoco.xml
