@@ -74,7 +74,7 @@ Dieses Projekt vereint alle Fähigkeiten, die heute von einem erfahrenen Fullsta
 ---
 ## 📝 Demo-Screenshot – Projektüberblick
 
-![Demo UI](./access/scrennshot/demo-screenshot.pdf)
+[Screenshot](./access/scrennshot/demo-screenshot.pdf)
 
 Der beigefügte Screenshot vermittelt einen umfassenden Überblick über die wichtigsten Funktionen, Architekturkomponenten und DevOps-Prozesse des Projekts. Die Präsentation ist so gestaltet, dass sie sowohl technische Tiefe als auch Nutzerfreundlichkeit und eine professionelle Umsetzung zeigt.
 
@@ -124,19 +124,6 @@ docker-compose --env-file .env up --build
 - Projekt als Webservice anlegen
 - Umgebungsvariablen setzen (siehe `.env`)
 - Auto-Deploy per GitHub Actions
-
----
-
-## 📸 Screenshot-Ideen
-
-- [ ] Login-Seite mit Auth-Flow
-- [ ] Produktübersicht mit Bild, Metadaten, Delete
-- [ ] Upload mit Vorschau/Metadaten
-- [ ] AWS S3 Bucket nach Upload
-- [ ] Health Endpoint (`/actuator/health`)
-- [ ] GitHub Actions „passed“ Build
-- [ ] Docker Compose: laufende Container
-[text](access/scrennshot/demo-screenshot.pdf)
 
 ---
 
