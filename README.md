@@ -127,16 +127,6 @@ docker-compose --env-file .env up --build
 
 ---
 
-## 📄 Weiterführende Links
-
-- [Spring Boot](https://spring.io/projects/spring-boot)
-- [React](https://react.dev/)
-- [AWS S3](https://aws.amazon.com/s3/)
-- [Docker](https://www.docker.com/)
-- [GitHub Actions](https://github.com/features/actions)
-
----
-
 ## 🌍 Geplantes Auto-Deployment (Render.com/Fly.io)
 
 **Auto-Deployment in die Cloud ist als nächster Schritt geplant:**  
