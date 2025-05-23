@@ -72,29 +72,33 @@ Dieses Projekt vereint alle Fähigkeiten, die heute von einem erfahrenen Fullsta
 - **Einfache Cloud-Migration:** Deploybar auf Render, AWS, Railway o.ä.
 
 ---
+## 📝 Demo-Screenshot – Projektüberblick
 
-## 📝 Was sollte im screenshot gezeigt werden?
+![Demo UI](./access/scrennshot/demo-screenshot.pdf)
 
-**Frontend UI:**
-- Login-Formular (korrektes/inkorrektes Login)
-- Produktübersicht (mit Bildern, Metadaten, Delete-Button)
-- Upload-Formular mit Bildvorschau und Fortschrittsbalken
+Der beigefügte Screenshot vermittelt einen umfassenden Überblick über die wichtigsten Funktionen, Architekturkomponenten und DevOps-Prozesse des Projekts. Die Präsentation ist so gestaltet, dass sie sowohl technische Tiefe als auch Nutzerfreundlichkeit und eine professionelle Umsetzung zeigt.
 
-**Backend/Cloud:**
+**Frontend UI**
+- Login-Formular: Erfolgreiche und fehlerhafte Logins
+- Produktübersicht: Mit Bildern, Metadaten, Delete-Button
+- Upload-Formular: Bildvorschau, Fortschrittsbalken
+
+**Backend & Cloud**
 - AWS S3 Bucket mit hochgeladenen Bildern (AWS Console)
-- Spring Boot Actuator Endpunkte (`/actuator/health`, `/actuator/info`)
-- GitHub Actions Pipeline (grüne Build-Badges, Build-Logs)
+- Monitoring: Spring Boot Actuator Health- und Info-Endpunkte
+- CI/CD: GitHub Actions mit grünen Build-Badges, Build-Logs
 
-**Code/Architektur:**
-- Kurzer Ausschnitt ProductController.java (API-Design)
-- Ausschnitt ProductForm.js (Upload-Logik mit Preview)
-- Auszug GitHub Actions Workflow YAML
+**Code & Architektur**
+- API-Design: Auszug aus `ProductController.java`
+- Upload-Logik: Ausschnitt aus `ProductForm.js`
+- Deployment: YAML-Konfiguration des GitHub Actions Workflows
 
-**DevOps:**
-- Docker Compose Übersicht (z.B. `docker ps` mit laufenden Containern)
-- Terminal-Logs von erfolgreichem Build/Test
-- `.env`-Beispieldatei (ohne echte Secrets!)
+**DevOps & Betrieb**
+- Docker Compose Übersicht (`docker ps`)
+- Terminal-Logs von Build und Test
+- Beispiel einer `.env`-Datei (ohne Secrets)
 
+*Der Screenshot deckt alle relevanten Aspekte von Frontend, Backend, Cloud, Architektur und DevOps ab und unterstreicht meine umfassenden Fullstack-Kompetenzen.*
 ---
 
 ## 🏁 So starten Sie das Projekt
