@@ -132,6 +132,7 @@ docker-compose --env-file .env up --build
 - [ ] Health Endpoint (`/actuator/health`)
 - [ ] GitHub Actions „passed“ Build
 - [ ] Docker Compose: laufende Container
+[text](access/scrennshot/demo-screenshot.pdf)
 
 ---
 
