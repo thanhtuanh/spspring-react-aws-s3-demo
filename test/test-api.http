@@ -37,12 +37,15 @@ Accept: application/json
 ### Health Check
 GET http://localhost:8080/actuator/health
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Nzk5NTU0OSwiZXhwIjoxNzQ4MDgxOTQ5fQ.xBZG1qt0FN7kbOnaVNIYBtJw2rWug0HKlTJIL8QSXrw
 
 ###
 
 ### Anwendungs-Info (falls konfiguriert)
 GET http://localhost:8080/actuator/info
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Nzk5NTU0OSwiZXhwIjoxNzQ4MDgxOTQ5fQ.xBZG1qt0FN7kbOnaVNIYBtJw2rWug0HKlTJIL8QSXrw
+
 
 ###
 

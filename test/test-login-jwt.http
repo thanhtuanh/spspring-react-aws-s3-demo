@@ -9,4 +9,4 @@ Content-Type: application/json
 
 ### Liste (mit JWT)
 GET http://localhost:8080/api/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Nzk4MzE2MywiZXhwIjoxNzQ4MDY5NTYzfQ.lu2pXE-tZiv3CrnWWM2WCK3H-PqUoYbSLm4WXUeein8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0Nzk5NTU0OSwiZXhwIjoxNzQ4MDgxOTQ5fQ.xBZG1qt0FN7kbOnaVNIYBtJw2rWug0HKlTJIL8QSXrw
